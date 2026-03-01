@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dokdfj0e1mbr3"]
+
+[ext_resource type="Script" uid="uid://p8fvhobym4w6" path="res://rooms/BaseRoom.gd" id="1_t6uci"]
+[ext_resource type="PackedScene" uid="uid://bklv67kqv436l" path="res://rooms/doors/door1.tscn" id="2_2f7gf"]
+[ext_resource type="PackedScene" uid="uid://c0oiyt66oihun" path="res://rooms/markers/RoomConnector.tscn" id="3_rwmmg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxxd0"]
+size = Vector3(1.9926147, 5, 1.9168396)
+
+[node name="Angle1" type="Node3D" unique_id=1796824711]
+script = ExtResource("1_t6uci")
+
+[node name="room" type="CSGBox3D" parent="." unique_id=1848186869]
+use_collision = true
+flip_faces = true
+size = Vector3(10, 5, 10)
+metadata/_edit_lock_ = true
+
+[node name="interior" type="CSGBox3D" parent="room" unique_id=61175337]
+operation = 2
+size = Vector3(9.9, 4.9, 9.9)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="room/interior" unique_id=1709192968]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -5.0606604, 0, -4.353554)
+operation = 2
+size = Vector3(5, 7, 12)
+
+[node name="Door1" parent="room" unique_id=2128623364 instance=ExtResource("2_2f7gf")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -2.986723, -1.4247127, -3)
+
+[node name="RoomConnector" parent="room/Door1" unique_id=987620522 instance=ExtResource("3_rwmmg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Door2" parent="room" unique_id=1063587010 instance=ExtResource("2_2f7gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -1, -0.6171875)
+
+[node name="RoomConnector" parent="room/Door2" unique_id=799793630 instance=ExtResource("3_rwmmg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="room" unique_id=1971038759]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -5.0393863, 0, -4.5050697)
+operation = 2
+size = Vector3(5, 7, 12)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1836012358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.037908, 0)
+light_energy = 3.535
+light_indirect_energy = 2.743
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.54
+shadow_blur = 0.351
+omni_range = 11.0
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1854481355]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -2.3280425, 0, -2.3473642)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=341853132]
+shape = SubResource("BoxShape3D_cxxd0")
+debug_color = Color(0.98039216, 0.13725491, 0, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1744638132]
+transform = Transform3D(0.018324975, 0, -0.9998321, 0, 1, 0, 0.9998321, 0, 0.018324975, 4.4562817, -2.4837658, -0.663888)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=2093237790]
+transform = Transform3D(1, 0, 0, 0, 0.9074038, -0.42025995, 0, 0.42025995, 0.9074038, 0, 0.7497957, 0.13873577)
+operation = 2
+size = Vector3(1, 1, 1.3057861)
+
+[node name="Hitbox2" type="Area3D" parent="." unique_id=1366961073]
+transform = Transform3D(-5.9604645e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -5.9604645e-08, 4.0287976, 0, -0.6182382)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox2" unique_id=1432537209]
+shape = SubResource("BoxShape3D_cxxd0")
+debug_color = Color(0.98039216, 0.13725491, 0, 1)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="Hitbox2" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox2" to="." method="_on_hitbox_body_exited"]

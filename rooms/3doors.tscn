@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://24dkb8xqb7ro"]
+
+[ext_resource type="Script" uid="uid://p8fvhobym4w6" path="res://rooms/BaseRoom.gd" id="1_51qtp"]
+[ext_resource type="PackedScene" uid="uid://bklv67kqv436l" path="res://rooms/doors/door1.tscn" id="2_hu2td"]
+[ext_resource type="PackedScene" uid="uid://c0oiyt66oihun" path="res://rooms/markers/RoomConnector.tscn" id="3_81nos"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxxd0"]
+size = Vector3(10, 5, 10)
+
+[node name="3doors" type="Node3D" unique_id=1796824711]
+script = ExtResource("1_51qtp")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=2140312664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1430664)
+use_collision = true
+size = Vector3(1, 1, 1.7470703)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D2" unique_id=1859559443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09625244, -0.36364746, 0.20922852)
+operation = 2
+size = Vector3(0.8074951, 0.92211914, 0.8676758)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D2" unique_id=1872049118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1817627, 0)
+height = 2.8132324
+sides = 13
+
+[node name="room" type="CSGBox3D" parent="." unique_id=1848186869]
+use_collision = true
+flip_faces = true
+size = Vector3(10, 5, 10)
+metadata/_edit_lock_ = true
+
+[node name="interior" type="CSGBox3D" parent="room" unique_id=61175337]
+operation = 2
+size = Vector3(9.9, 4.9, 9.9)
+
+[node name="Door1" parent="room" unique_id=2128623364 instance=ExtResource("2_hu2td")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.986723, -1.4247127, 0)
+
+[node name="RoomConnector" parent="room/Door1" unique_id=987620522 instance=ExtResource("3_81nos")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Door2" parent="room" unique_id=1063587010 instance=ExtResource("2_hu2td")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.2732124, 3.350443)
+
+[node name="RoomConnector" parent="room/Door2" unique_id=799793630 instance=ExtResource("3_81nos")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Door3" parent="room" unique_id=771858280 instance=ExtResource("2_hu2td")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -5)
+
+[node name="RoomConnector" parent="room/Door3" unique_id=1644671715 instance=ExtResource("3_81nos")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1836012358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.037908, 0)
+light_energy = 3.535
+light_indirect_energy = 2.743
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.54
+shadow_blur = 0.351
+omni_range = 11.0
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1854481355]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=341853132]
+shape = SubResource("BoxShape3D_cxxd0")
+debug_color = Color(0.9810805, 0.13849518, 0, 0.41960785)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=352131401]
+transform = Transform3D(0.47766483, 0.8785421, 0, -0.8785421, 0.47766483, 0, 0, 0, 1, 2.5711508, -1.585974, 3.1802275)
+use_collision = true
+height = 5.6486816
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=158465294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4922757, -4.4610105)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=1328676792]
+transform = Transform3D(1, 0, 0, 0, 0.9074038, -0.42025995, 0, 0.42025995, 0.9074038, 0, 0.7497957, 0.13873577)
+operation = 2
+size = Vector3(1, 1, 1.3057861)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

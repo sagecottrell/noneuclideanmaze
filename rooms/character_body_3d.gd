@@ -1,0 +1,34 @@
+class_name Player
+extends CharacterBody3D
+
+
+@export var jump_speed: float = 4
+@export var accel: float = 4
+@export var decel: float = 4
+@export var walk_speed: float = 4
+
+@onready var head = $head
+@onready var camera = $head/PhantomCamera3D
+
+
+func _process(delta: float) -> void:
+	velocity += get_gravity() * delta
+	if is_on_floor() and Input.is_action_pressed("jump"):
+		velocity.y = jump_speed
+	
+	var input_dir = Input.get_vector("left", "right", "fwd", "back")
+	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if not direction.is_zero_approx():
+		velocity.x = move_toward(velocity.x, direction.x * walk_speed, accel)
+		velocity.z = move_toward(velocity.z, direction.z * walk_speed, accel)
+	else:
+		velocity.x = move_toward(velocity.x, 0, decel)
+		velocity.z = move_toward(velocity.x, 0, decel)
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		var mvel = Input.get_last_mouse_velocity()
+		head.rotate_y(-mvel.x / 10000)
+		#camera.set_third_person_rotation(head.rotation)
+		# head.rotate_x(mvel)
+	
+	move_and_slide()

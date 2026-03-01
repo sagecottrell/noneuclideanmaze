@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c0oiyt66oihun"]
+
+[ext_resource type="Script" uid="uid://bvjg7h8qkir8d" path="res://rooms/markers/room_connector.gd" id="1_fkiwr"]
+
+[node name="RoomConnector" type="Node3D" unique_id=987620522]
+script = ExtResource("1_fkiwr")

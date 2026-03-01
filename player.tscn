@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://d1yfdskpev3n6"]
+
+[ext_resource type="Script" uid="uid://ce0a8n1phecqe" path="res://rooms/character_body_3d.gd" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_hqtel"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_sweqy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_huihk"]
+height = 1.9
+
+[sub_resource type="Resource" id="Resource_bf3um"]
+script = ExtResource("3_sweqy")
+
+[node name="Player" type="CharacterBody3D" unique_id=1620254123]
+script = ExtResource("1_i3pqv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1835826123]
+shape = SubResource("CapsuleShape3D_huihk")
+
+[node name="head" type="Node3D" parent="." unique_id=1086847486]
+
+[node name="PhantomCamera3D" type="Node3D" parent="head" unique_id=463086168 node_paths=PackedStringArray("follow_target", "look_at_target")]
+top_level = true
+script = ExtResource("2_hqtel")
+follow_mode = 1
+follow_target = NodePath("..")
+look_at_mode = 1
+look_at_target = NodePath("..")
+tween_resource = SubResource("Resource_bf3um")
+tween_on_load = false
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
