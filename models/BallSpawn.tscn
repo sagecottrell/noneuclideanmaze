@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bkenleb6t0kvb"]
+
+[ext_resource type="PackedScene" uid="uid://b1v6uk7nb1yfa" path="res://models/Ball.tscn" id="1_0nbtc"]
+[ext_resource type="Script" uid="uid://pwt5cr1rydlh" path="res://models/ball_spawn.gd" id="1_7stle"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0nbtc"]
+
+[node name="BallSpawn" type="Node3D" unique_id=1969051974]
+script = ExtResource("1_7stle")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=105988536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15970993, 0)
+height = 1.559082
+sides = 18
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=677269931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5474434, 0)
+use_collision = true
+height = 0.14477539
+sides = 18
+
+[node name="Ball" parent="." unique_id=820267226 instance=ExtResource("1_0nbtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2430739, 0)
+color = Color(0.95666, 0.3724161, 0.6657484, 1)
+
+[node name="BallInteractable" type="Area3D" parent="." unique_id=932709694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2558465, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BallInteractable" unique_id=1304147858]
+shape = SubResource("BoxShape3D_0nbtc")

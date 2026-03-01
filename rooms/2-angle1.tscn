@@ -1,14 +1,32 @@
 [gd_scene format=3 uid="uid://dokdfj0e1mbr3"]
 
 [ext_resource type="Script" uid="uid://p8fvhobym4w6" path="res://rooms/BaseRoom.gd" id="1_cyndi"]
+[ext_resource type="PackedScene" uid="uid://y6i6r5n4inq" path="res://rooms/markers/GameLogicSpawners.tscn" id="2_mty7g"]
 [ext_resource type="PackedScene" uid="uid://bklv67kqv436l" path="res://rooms/doors/door1.tscn" id="2_xliyx"]
 [ext_resource type="PackedScene" uid="uid://c0oiyt66oihun" path="res://rooms/markers/RoomConnector.tscn" id="3_mty7g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xliyx"]
+albedo_color = Color(0.6636676, 0.8818707, 0.17586923, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cxxd0"]
 size = Vector3(1.9926147, 5, 1.9168396)
 
 [node name="Angle1" type="Node3D" unique_id=1796824711]
 script = ExtResource("1_cyndi")
+
+[node name="GameLogicSpawners" parent="." unique_id=615705820 instance=ExtResource("2_mty7g")]
+
+[node name="EndSpawn" parent="GameLogicSpawners" index="0" unique_id=1302923881]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.919897, -2.5045462, -4.491608)
+
+[node name="BallPedestal" parent="GameLogicSpawners" index="1" unique_id=1401124955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35177076, -2.4882784, 0.58075)
+
+[node name="ColorDisplay" parent="GameLogicSpawners/BallPedestal" index="2" unique_id=1771863900]
+material = SubResource("StandardMaterial3D_xliyx")
+
+[node name="BallSpawn" parent="GameLogicSpawners" index="2" unique_id=1969051974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69224113, -2.4063764, 3.317379)
 
 [node name="room" type="CSGBox3D" parent="." unique_id=1848186869]
 use_collision = true
@@ -110,3 +128,7 @@ debug_color = Color(0.98039216, 0.13725491, 0, 1)
 [connection signal="body_exited" from="Hitbox3" to="." method="_on_hitbox_body_exited"]
 [connection signal="body_entered" from="Hitbox4" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox4" to="." method="_on_hitbox_body_exited"]
+
+[editable path="GameLogicSpawners"]
+[editable path="GameLogicSpawners/BallPedestal"]
+[editable path="GameLogicSpawners/BallSpawn"]

@@ -7,6 +7,9 @@ signal hitbox_player_exit(room: BaseRoom, player: Player)
 var doors: Array[RoomConnector] = []
 var connections: Dictionary[RoomConnector, BaseRoom] = {}
 
+func logic_spawners() -> GameLogicSpawners:
+	return $GameLogicSpawners
+
 func find_doors() -> void:
 	for child in find_children("RoomConnector"):
 		if child is Node3D:
@@ -33,9 +36,7 @@ func spawn_player(player: Node3D):
 
 func set_active_door_count(count: int):
 	doors.shuffle()
-	prints('set active door count', doors.size(), count)
 	while doors.size() > count:
 		var extra_door = doors.pop_front()
 		var csg = extra_door.get_parent()
-		prints(csg, extra_door)
 		csg.get_parent().remove_child(csg)

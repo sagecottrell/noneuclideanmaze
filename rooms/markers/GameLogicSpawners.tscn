@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://y6i6r5n4inq"]
+
+[ext_resource type="PackedScene" uid="uid://da5ccu7pce6dv" path="res://models/EndSpawn.tscn" id="1_f1c53"]
+[ext_resource type="Script" uid="uid://d1c34kabkog33" path="res://rooms/markers/game_logic_spawners.gd" id="1_fgame"]
+[ext_resource type="PackedScene" uid="uid://bkenleb6t0kvb" path="res://models/BallSpawn.tscn" id="2_pfl2j"]
+[ext_resource type="PackedScene" uid="uid://d2t0n7wse13ny" path="res://models/BallPedestal.tscn" id="3_txbbf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txbbf"]
+albedo_color = Color(0.6636676, 0.8818707, 0.17586923, 1)
+
+[node name="GameLogicSpawners" type="Node3D" unique_id=615705820]
+script = ExtResource("1_fgame")
+
+[node name="EndSpawn" parent="." unique_id=1302923881 instance=ExtResource("1_f1c53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, 0)
+
+[node name="BallPedestal" parent="." unique_id=1401124955 instance=ExtResource("3_txbbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.69923, 0)
+color = Color(0.6636676, 0.8818707, 0.17586923, 1)
+
+[node name="ColorDisplay" parent="BallPedestal" index="2" unique_id=1771863900]
+material = SubResource("StandardMaterial3D_txbbf")
+
+[node name="BallSpawn" parent="." unique_id=1969051974 instance=ExtResource("2_pfl2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+
+[connection signal="area_entered" from="BallPedestal/PedestalInteractable" to="." method="_on_pedestal_interactable_area_entered"]
+[connection signal="area_exited" from="BallPedestal/PedestalInteractable" to="." method="_on_pedestal_interactable_area_exited"]
+[connection signal="area_entered" from="BallSpawn/BallInteractable" to="." method="_on_ball_interactable_area_entered"]
+[connection signal="area_exited" from="BallSpawn/BallInteractable" to="." method="_on_ball_interactable_area_exited"]
+
+[editable path="BallPedestal"]
+[editable path="BallSpawn"]

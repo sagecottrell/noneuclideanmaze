@@ -10,9 +10,10 @@
 
 [node name="Node3D" type="Node3D" unique_id=202676806]
 script = ExtResource("1_l8v81")
-starting_room_scenes = Array[PackedScene]([ExtResource("6_tw3kd")])
-all_room_scenes = Array[PackedScene]([ExtResource("7_bf3um"), ExtResource("4_huihk"), ExtResource("4_bf3um")])
+starting_room_scenes = Array[PackedScene]([ExtResource("4_huihk")])
+all_room_scenes = Array[PackedScene]([ExtResource("7_bf3um"), ExtResource("4_bf3um"), ExtResource("6_tw3kd")])
 player_scene = ExtResource("5_l8v81")
+colors = Array[Color]([Color(0, 1, 0.8352941, 1), Color(1, 0.68235296, 0, 1), Color(1, 0, 1, 1)])
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2132231191]
 physics_interpolation_mode = 1
@@ -38,29 +39,50 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "- drag right click to turn
 - WASD or arrow keys to move
-- space to jump
-- left click to shoot
-- enter to chat
-- middle click to zoom
-- B to open inventory
-- I to open bag
-- Q for PvP lobby"
+- E to interact"
+
+[node name="Hint" type="Label" parent="Control" unique_id=1232723532]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "hello"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=865714199]
+layout_mode = 2
+
+[node name="BallDisplay" type="HBoxContainer" parent="Control/CenterContainer" unique_id=2100389546]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1671927228]
 layout_mode = 2
 
-[node name="ChatLog" type="VBoxContainer" parent="Control/PanelContainer" unique_id=671284640]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer" unique_id=1821801729]
+layout_mode = 2
+
+[node name="ChatLog" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer" unique_id=671284640]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/ChatLog" unique_id=898007695]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/VBoxContainer/ChatLog" unique_id=898007695]
 visible = false
 layout_mode = 2
 text = "hello"
 fit_content = true
 
-[node name="TextChat" type="LineEdit" parent="Control" unique_id=492332470]
+[node name="TextChatContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer" unique_id=1795506864]
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="text_submitted" from="Control/TextChat" to="." method="_on_text_chat_text_submitted"]
+[node name="TextChat" type="LineEdit" parent="Control/PanelContainer/VBoxContainer/TextChatContainer" unique_id=492332470]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ClearTextChatButton" type="Button" parent="Control/PanelContainer/VBoxContainer/TextChatContainer" unique_id=354890683]
+layout_mode = 2
+text = "Clear"
+
+[connection signal="text_submitted" from="Control/PanelContainer/VBoxContainer/TextChatContainer/TextChat" to="." method="_on_text_chat_text_submitted"]
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/TextChatContainer/ClearTextChatButton" to="." method="_on_clear_text_chat_button_pressed"]

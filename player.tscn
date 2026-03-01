@@ -10,6 +10,10 @@ height = 1.9
 [sub_resource type="Resource" id="Resource_bf3um"]
 script = ExtResource("3_sweqy")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3pqv"]
+radius = 0.107421875
+height = 1.7073975
+
 [node name="Player" type="CharacterBody3D" unique_id=1620254123]
 script = ExtResource("1_i3pqv")
 
@@ -31,3 +35,9 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PlayerInteraction" type="Area3D" parent="head" unique_id=62456447]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.9551996)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/PlayerInteraction" unique_id=1934726342]
+shape = SubResource("CapsuleShape3D_i3pqv")

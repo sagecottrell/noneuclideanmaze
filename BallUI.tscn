@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://x660i412j4ah"]
+
+[ext_resource type="Script" uid="uid://bvsewsh3yoslo" path="res://ball_ui.gd" id="1_6ryi1"]
+[ext_resource type="PackedScene" uid="uid://b1v6uk7nb1yfa" path="res://models/Ball.tscn" id="1_85xi0"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_6ryi1"]
+
+[sub_resource type="Environment" id="Environment_4bqnh"]
+
+[sub_resource type="World3D" id="World3D_85xi0"]
+environment = SubResource("Environment_4bqnh")
+camera_attributes = SubResource("CameraAttributesPractical_6ryi1")
+
+[node name="BallUi" type="SubViewportContainer" unique_id=178367889]
+anchors_preset = -1
+anchor_right = 0.028
+anchor_bottom = 0.049000002
+offset_right = -0.25600052
+offset_bottom = 0.24799919
+script = ExtResource("1_6ryi1")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1738302438]
+own_world_3d = true
+world_3d = SubResource("World3D_85xi0")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(32, 32)
+size_2d_override = Vector2i(32, 32)
+render_target_update_mode = 4
+
+[node name="Ball" parent="SubViewport" unique_id=820267226 instance=ExtResource("1_85xi0")]
+unique_name_in_owner = true
+color = Color(1, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1532103448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport" unique_id=334651916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7609596, 2.6598644)

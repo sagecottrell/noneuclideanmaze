@@ -10,7 +10,6 @@ extends CharacterBody3D
 @onready var head = $head
 @onready var camera = $head/PhantomCamera3D
 
-
 func _process(delta: float) -> void:
 	velocity += get_gravity() * delta
 	

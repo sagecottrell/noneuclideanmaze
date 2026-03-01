@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://d2t0n7wse13ny"]
+
+[ext_resource type="Script" uid="uid://durhm2ydffm8u" path="res://models/ball_pedestal.gd" id="1_xhm3g"]
+[ext_resource type="PackedScene" uid="uid://b1v6uk7nb1yfa" path="res://models/Ball.tscn" id="2_67umo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67umo"]
+albedo_color = Color(0.8235294, 0.83137256, 0.08235294, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_67umo"]
+
+[node name="BallPedestal" type="Node3D" unique_id=1401124955]
+script = ExtResource("1_xhm3g")
+color = Color(0.8235294, 0.83137256, 0.08235294, 1)
+
+[node name="Ball" parent="." unique_id=820267226 instance=ExtResource("2_67umo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98159885, 0)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1938949901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23089695, 0)
+use_collision = true
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBox3D" unique_id=669769259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527874, 0)
+operation = 2
+radius = 0.44250208
+
+[node name="ColorDisplay" type="CSGBox3D" parent="." unique_id=1771863900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0056762695, 0.30152416, -0.024536133)
+size = Vector3(1.1224365, 0.21472168, 1.1574707)
+material = SubResource("StandardMaterial3D_67umo")
+
+[node name="PedestalInteractable" type="Area3D" parent="." unique_id=341811118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.134711, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PedestalInteractable" unique_id=60335462]
+shape = SubResource("BoxShape3D_67umo")
