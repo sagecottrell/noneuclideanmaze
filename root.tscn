@@ -37,7 +37,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="Control" unique_id=1684967719]
 layout_mode = 2
 size_flags_vertical = 3
-text = "- drag right click to turn
+text = "- mouse to turn
 - WASD or arrow keys to move
 - E to interact"
 

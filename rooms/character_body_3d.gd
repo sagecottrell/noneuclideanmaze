@@ -10,6 +10,8 @@ extends CharacterBody3D
 @onready var head = $head
 @onready var camera = $head/PhantomCamera3D
 
+var mouse_sensitivity = 0.002
+
 func _process(delta: float) -> void:
 	velocity += get_gravity() * delta
 	
@@ -28,10 +30,10 @@ func _process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, decel)
 		velocity.z = move_toward(velocity.x, 0, decel)
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		var mvel = Input.get_last_mouse_velocity()
-		head.rotate_y(-mvel.x / 10000)
-		#camera.set_third_person_rotation(head.rotation)
-		# head.rotate_x(mvel)
-	
 	move_and_slide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		# Rotate body horizontally (yaw)
+		head.rotate_y(-event.relative.x * mouse_sensitivity)
+	

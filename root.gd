@@ -16,6 +16,7 @@ var looking_at_ped: BallPedestal
 @export var colors: Array[Color] = []
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	%Hint.text = ""
 	GlobalSignals.on_look_at_ball.connect(on_look_at_ball)
 	GlobalSignals.on_look_away_ball.connect(on_look_away_ball)
@@ -138,6 +139,17 @@ func _unhandled_key_input(event: InputEvent) -> void:
 					GlobalSignals.ball_in_pedestal(ball)
 					break
 
+	# Toggle mouse capture
+	if event.is_action_pressed("ui_cancel"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouse and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_text_chat_text_submitted(new_text: String) -> void:
 	%TextChatContainer.visible = false
@@ -154,7 +166,7 @@ func _on_text_chat_text_submitted(new_text: String) -> void:
 
 func on_look_at_ball(e: BallSpawn):
 	looking_at_ball = e
-	%Hint.text = "Pick up ball"
+	%Hint.text = "Pick up orb"
 	
 func on_look_away_ball(e: BallSpawn):
 	if e == looking_at_ball:
@@ -163,7 +175,7 @@ func on_look_away_ball(e: BallSpawn):
 	
 func on_look_at_ped(e: BallPedestal):
 	looking_at_ped = e
-	%Hint.text = "Place ball"
+	%Hint.text = "Place orb"
 	
 func on_look_away_ped(e: BallPedestal):
 	if e == looking_at_ped:
