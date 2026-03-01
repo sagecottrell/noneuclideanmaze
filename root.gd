@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var starting_rooms: Array[PackedScene] = []
-@export var all_rooms: Array[PackedScene] = []
+@export var starting_room_scenes: Array[PackedScene] = []
+@export var all_room_scenes: Array[PackedScene] = []
 @export var player_scene: PackedScene
 
 var current_rooms: Array[BaseRoom] = []
@@ -11,28 +11,42 @@ var current_room: BaseRoom
 
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
-	var room = starting_rooms.pick_random().instantiate()
+	
+	var maze = MazeSetup.setup(20, 4)
+	var start_room_id = maze.keys().pick_random()
+	
+	var rooms: Dictionary[int, BaseRoom] = {}
 	var player = player_scene.instantiate()
 	add_child(player)
-	if room is BaseRoom:
-		_setup_new_room(room)
-		spawn_player.call_deferred(room, player)
+	
+	for room_id in maze.keys():
+		var scenes = all_room_scenes
+		if room_id == start_room_id:
+			scenes = starting_room_scenes
+		var neighbors = maze[room_id]
+		var new_room: BaseRoom = scenes.pick_random().instantiate()
+		_setup_new_room(new_room)
+		new_room.set_active_door_count(neighbors.size())
+		rooms[room_id] = new_room
+		if room_id == start_room_id:
+			spawn_player.call_deferred(new_room, player)
+	
+	for room_id in maze.keys():
+		for other_id in maze[room_id]:
+			rooms[room_id].connect_room(rooms[other_id])
+	
+	var starting_room = rooms[start_room_id]
+	starting_room.position.y = 0
+	starting_room.process_mode = Node.PROCESS_MODE_INHERIT
+	on_move_to_room(starting_room, player)
 
 func spawn_player(room: BaseRoom, player: Player):
 	on_hitbox_player_enter(room, player)
 	on_move_to_room(room, player)
 	room.spawn_player.call_deferred(player)
 
-func on_hitbox_player_enter(room: BaseRoom, player: Player):
+func on_hitbox_player_enter(room: BaseRoom, _player: Player):
 	prints("hitbox enter", room.name)
-	for door in room.doors:
-		if not room.connections.has(door):
-			var new_room = all_rooms.pick_random().instantiate()
-			new_room.position.y = player.position.y - 1000
-			var new_door = _setup_new_room(new_room)
-			room.connections[door] = new_room
-			new_room.connections[new_door] = room
-	
 	touching_new_room = room
 
 func on_hitbox_player_exit(room: BaseRoom, player: Player):
@@ -63,9 +77,10 @@ func on_move_to_room(room: BaseRoom, player: Player):
 func _add_child_room(other_room: BaseRoom, other_door: Node3D, conn: Node3D):
 	other_room.global_transform = conn.global_transform.rotated_local(Vector3.DOWN, 3.1415) * (other_door.global_transform.affine_inverse() * other_room.global_transform)
 
-func _setup_new_room(new_room: BaseRoom) -> RoomConnector:
+func _setup_new_room(new_room: BaseRoom):
 	new_room.find_doors()
 	add_child(new_room)
+	new_room.position.y = -1000
+	new_room.process_mode = Node.PROCESS_MODE_DISABLED
 	new_room.hitbox_player_enter.connect(on_hitbox_player_enter)
 	new_room.hitbox_player_exit.connect(on_hitbox_player_exit)
-	return new_room.doors.pick_random()

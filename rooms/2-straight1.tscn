@@ -41,6 +41,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -1, -0.6171875)
 [node name="RoomConnector" parent="room/Door2" unique_id=799793630 instance=ExtResource("1_2koo6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
+[node name="Door3" parent="room" unique_id=644076597 instance=ExtResource("1_cxxd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.986723, -1.4247127, -5)
+
+[node name="RoomConnector" parent="room/Door3" unique_id=1229380926 instance=ExtResource("1_2koo6")]
+
+[node name="Door4" parent="room" unique_id=1239856877 instance=ExtResource("1_cxxd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.013277, -1.4247127, 5)
+
+[node name="RoomConnector" parent="room/Door4" unique_id=262228399 instance=ExtResource("1_2koo6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1836012358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.037908, 0)
 light_energy = 3.535

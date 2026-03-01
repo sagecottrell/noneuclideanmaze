@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://b3ipjnps6q1pf"]
 
-[ext_resource type="Script" uid="uid://p8fvhobym4w6" path="res://rooms/BaseRoom.gd" id="1_lmk6f"]
-[ext_resource type="PackedScene" uid="uid://bklv67kqv436l" path="res://rooms/doors/door1.tscn" id="1_nx5iv"]
-[ext_resource type="PackedScene" uid="uid://c0oiyt66oihun" path="res://rooms/markers/RoomConnector.tscn" id="2_lmk6f"]
+[ext_resource type="Script" uid="uid://p8fvhobym4w6" path="res://rooms/BaseRoom.gd" id="1_una0b"]
+[ext_resource type="PackedScene" uid="uid://bklv67kqv436l" path="res://rooms/doors/door1.tscn" id="2_50f71"]
+[ext_resource type="PackedScene" uid="uid://c0oiyt66oihun" path="res://rooms/markers/RoomConnector.tscn" id="3_hbd61"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx5iv"]
 size = Vector3(10, 5, 10)
 
 [node name="Start1" type="Node3D" unique_id=319768225]
-script = ExtResource("1_lmk6f")
+script = ExtResource("1_una0b")
 
 [node name="room" type="CSGBox3D" parent="." unique_id=1669791210]
 use_collision = true
@@ -20,17 +20,28 @@ metadata/_edit_lock_ = true
 operation = 2
 size = Vector3(9.9, 4.9, 9.9)
 
-[node name="Door1" parent="room" unique_id=2128623364 instance=ExtResource("1_nx5iv")]
+[node name="Door1" parent="room" unique_id=2128623364 instance=ExtResource("2_50f71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.986723, -1.4247127, 0)
 
-[node name="RoomConnector" parent="room/Door1" unique_id=987620522 instance=ExtResource("2_lmk6f")]
+[node name="RoomConnector" parent="room/Door1" unique_id=987620522 instance=ExtResource("3_hbd61")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Door2" parent="room" unique_id=821210215 instance=ExtResource("1_nx5iv")]
+[node name="Door2" parent="room" unique_id=821210215 instance=ExtResource("2_50f71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -1, -0.6171875)
 
-[node name="RoomConnector" parent="room/Door2" unique_id=551429712 instance=ExtResource("2_lmk6f")]
+[node name="RoomConnector" parent="room/Door2" unique_id=551429712 instance=ExtResource("3_hbd61")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Door3" parent="room" unique_id=199694092 instance=ExtResource("2_50f71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028612137, -1.4247127, -4.999052)
+
+[node name="RoomConnector" parent="room/Door3" unique_id=158623304 instance=ExtResource("3_hbd61")]
+
+[node name="Door4" parent="room" unique_id=295793465 instance=ExtResource("2_50f71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013277054, -1.4247127, 5)
+
+[node name="RoomConnector" parent="room/Door4" unique_id=636308643 instance=ExtResource("3_hbd61")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=971281330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.037908, 0)
