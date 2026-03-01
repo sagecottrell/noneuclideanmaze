@@ -12,6 +12,8 @@ var current_room: BaseRoom
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
 	
+	_on_text_chat_text_submitted("")
+	
 	var maze = MazeSetup.setup(20, 4)
 	var start_room_id = maze.keys().pick_random()
 	
@@ -84,3 +86,24 @@ func _setup_new_room(new_room: BaseRoom):
 	new_room.process_mode = Node.PROCESS_MODE_DISABLED
 	new_room.hitbox_player_enter.connect(on_hitbox_player_enter)
 	new_room.hitbox_player_exit.connect(on_hitbox_player_exit)
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_chat"):
+		%TextChat.visible = !%TextChat.visible
+		if %TextChat.visible:
+			%TextChat.grab_focus()
+
+
+func _on_text_chat_text_submitted(new_text: String) -> void:
+	if new_text.length() == 0:
+		return
+	%TextChat.visible = false
+	%TextChat.release_focus()
+	%TextChat.text = ""
+	var new = RichTextLabel.new()
+	new.fit_content = true
+	new.text = new_text
+	%ChatLog.add_child(new)
+	while %ChatLog.get_children().size() > 10:
+		%ChatLog.remove_child(%ChatLog.get_child(0))

@@ -13,6 +13,10 @@ extends CharacterBody3D
 
 func _process(delta: float) -> void:
 	velocity += get_gravity() * delta
+	
+	if get_viewport().gui_get_focus_owner() != null:
+		return
+	
 	if is_on_floor() and Input.is_action_pressed("jump"):
 		velocity.y = jump_speed
 	

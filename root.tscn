@@ -25,3 +25,42 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("4_vyht1")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Control" type="VBoxContainer" parent="." unique_id=1199015929]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control" unique_id=1684967719]
+layout_mode = 2
+size_flags_vertical = 3
+text = "- drag right click to turn
+- WASD or arrow keys to move
+- space to jump
+- left click to shoot
+- enter to chat
+- middle click to zoom
+- B to open inventory
+- I to open bag
+- Q for PvP lobby"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1671927228]
+layout_mode = 2
+
+[node name="ChatLog" type="VBoxContainer" parent="Control/PanelContainer" unique_id=671284640]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/ChatLog" unique_id=898007695]
+visible = false
+layout_mode = 2
+text = "hello"
+fit_content = true
+
+[node name="TextChat" type="LineEdit" parent="Control" unique_id=492332470]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="text_submitted" from="Control/TextChat" to="." method="_on_text_chat_text_submitted"]
