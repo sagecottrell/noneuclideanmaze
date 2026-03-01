@@ -20,7 +20,10 @@ script = ExtResource("1_cyndi")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.919897, -2.5045462, -4.491608)
 
 [node name="BallPedestal" parent="GameLogicSpawners" index="1" unique_id=1401124955]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35177076, -2.4882784, 0.58075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20100772, -2.4882784, 0.04535246)
+
+[node name="Ball" parent="GameLogicSpawners/BallPedestal" index="0" unique_id=820267226]
+color = Color(0.6636676, 0.8818707, 0.17586923, 1)
 
 [node name="ColorDisplay" parent="GameLogicSpawners/BallPedestal" index="2" unique_id=1771863900]
 material = SubResource("StandardMaterial3D_xliyx")
@@ -119,6 +122,12 @@ transform = Transform3D(-5.9604645e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox4" unique_id=1419953042]
 shape = SubResource("BoxShape3D_cxxd0")
 debug_color = Color(0.98039216, 0.13725491, 0, 1)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="." unique_id=1609504854]
+inner_radius = 1.0
+outer_radius = 2.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=810805672]
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

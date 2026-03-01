@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dnf47p3rpc0br"]
+
+[sub_resource type="Gradient" id="Gradient_mjs6f"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.07371795, 0.25, 0.33333334, 0.5, 0.59294873, 0.75, 0.8397436)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y55kr"]
+gradient = SubResource("Gradient_mjs6f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mjs6f"]
+emission_shape = 3
+emission_box_extents = Vector3(3.54, 0.515, 0.155)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_max = 5.3199997
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_y55kr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjs6f"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_mjs6f"]
+material = SubResource("StandardMaterial3D_mjs6f")
+size = Vector2(0.1, 0.1)
+
+[node name="Winscreen" type="Node3D" unique_id=561698197]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=95700492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7579565, 0)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_mjs6f")
+draw_pass_1 = SubResource("QuadMesh_mjs6f")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=21845213]
+text = "you win!"

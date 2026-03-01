@@ -10,7 +10,7 @@ static func setup(count: int, max_connections: int) -> Dictionary[int, Array]:
 		return map[x].size() < max_connections
 	
 	var one_connection = func(x):
-		return map[x].size() == 1
+		return map[x].size() <= 2
 	
 	for i in range(count):
 		map[i] = []
@@ -41,11 +41,17 @@ static func setup(count: int, max_connections: int) -> Dictionary[int, Array]:
 		r1f.append_array(r2f)
 		groups.append(r1f)
 	
-	var dead_ends = map.keys().filter(one_connection)
-	for i in range(dead_ends.size() / 2):
-		var a = dead_ends[i * 2]
-		var b = dead_ends[i * 2 + 1]
-		map[a].append(b)
-		map[b].append(a)
+	while true:
+		var dead_ends = map.keys().filter(one_connection)
+		dead_ends.shuffle()
+		if dead_ends.size() <= 2:
+			break
+		for i in range(dead_ends.size() / 2):
+			var a = dead_ends[i * 2]
+			var b = dead_ends[i * 2 + 1]
+			if b in map[a] or a in map[b]:
+				continue
+			map[a].append(b)
+			map[b].append(a)
 	
 	return map

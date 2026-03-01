@@ -15,7 +15,7 @@ albedo_color = Color(0.6636676, 0.8818707, 0.17586923, 1)
 script = ExtResource("1_r0ffb")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=2140312664]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1430664)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.0067294, -0.1430664)
 size = Vector3(1, 1, 1.7470703)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D2" unique_id=1859559443]
@@ -91,6 +91,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.49
 
 [node name="BallPedestal" parent="GameLogicSpawners" index="1" unique_id=1401124955]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.198381, -0.5026679, 3.377658)
+
+[node name="Ball" parent="GameLogicSpawners/BallPedestal" index="0" unique_id=820267226]
+color = Color(0.6636676, 0.8818707, 0.17586923, 1)
 
 [node name="ColorDisplay" parent="GameLogicSpawners/BallPedestal" index="2" unique_id=1771863900]
 material = SubResource("StandardMaterial3D_foswi")

@@ -15,6 +15,10 @@ var looking_at_ped: BallPedestal
 
 @export var colors: Array[Color] = []
 
+func player_exit(player: Player):
+	player.position.y += 1000
+	player.show_win()
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	%Hint.text = ""
@@ -22,12 +26,13 @@ func _ready() -> void:
 	GlobalSignals.on_look_away_ball.connect(on_look_away_ball)
 	GlobalSignals.on_look_at_ped.connect(on_look_at_ped)
 	GlobalSignals.on_look_away_ped.connect(on_look_away_ped)
+	GlobalSignals.on_player_exit.connect(player_exit)
 
 	await get_tree().create_timer(0.5).timeout
 	
 	_on_text_chat_text_submitted("")
 	
-	var maze = MazeSetup.setup(20, 4)
+	var maze = MazeSetup.setup(30, 4)
 	
 	var special_room_candidates = maze.keys()
 	special_room_candidates.shuffle()

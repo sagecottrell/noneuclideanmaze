@@ -12,7 +12,11 @@ extends CharacterBody3D
 
 var mouse_sensitivity = 0.002
 
+var last_good_position: Vector3
+
 func _process(delta: float) -> void:
+	if $Winscreen.visible:
+		return
 	velocity += get_gravity() * delta
 	
 	if get_viewport().gui_get_focus_owner() != null:
@@ -31,9 +35,18 @@ func _process(delta: float) -> void:
 		velocity.z = move_toward(velocity.x, 0, decel)
 	
 	move_and_slide()
+	
+	if is_on_floor():
+		last_good_position = position
+	elif position.distance_to(last_good_position) > 100:
+		position = last_good_position
+		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		# Rotate body horizontally (yaw)
 		head.rotate_y(-event.relative.x * mouse_sensitivity)
-	
+
+func show_win():
+	$Winscreen.visible = true
+	head.rotation.y = 0
