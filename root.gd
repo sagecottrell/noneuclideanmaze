@@ -37,7 +37,6 @@ func _ready() -> void:
 	var special_room_candidates = maze.keys()
 	special_room_candidates.shuffle()
 	var start_room_id = special_room_candidates.pop_front()
-	var end_room_id = special_room_candidates.pop_front()
 	
 	var ball_rooms = {}
 	var ped_rooms = {}
@@ -64,7 +63,7 @@ func _ready() -> void:
 		else:
 			var logic = new_room.logic_spawners()
 			if logic != null:
-				logic.set_elements(room_id == end_room_id, ball_rooms.get(room_id, Color.BLACK), ped_rooms.get(room_id, Color.BLACK))
+				logic.set_elements(ball_rooms.get(room_id, Color.BLACK), ped_rooms.get(room_id, Color.BLACK))
 	
 	for room_id in maze.keys():
 		for other_id in maze[room_id]:

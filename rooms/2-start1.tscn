@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://p8fvhobym4w6" path="res://rooms/BaseRoom.gd" id="1_una0b"]
 [ext_resource type="PackedScene" uid="uid://bklv67kqv436l" path="res://rooms/doors/door1.tscn" id="2_50f71"]
 [ext_resource type="PackedScene" uid="uid://c0oiyt66oihun" path="res://rooms/markers/RoomConnector.tscn" id="3_hbd61"]
+[ext_resource type="PackedScene" uid="uid://da5ccu7pce6dv" path="res://models/EndSpawn.tscn" id="4_50f71"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx5iv"]
 size = Vector3(10, 5, 10)
@@ -71,6 +72,9 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 0.9074038, -0.42025995, 0, 0.42025995, 0.9074038, 0, 0.7497957, 0.13873577)
 operation = 2
 size = Vector3(1, 1, 1.3057861)
+
+[node name="EndSpawn" parent="." unique_id=1302923881 instance=ExtResource("4_50f71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4497242, -2.5, 4.44359)
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

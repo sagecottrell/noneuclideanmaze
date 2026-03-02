@@ -16,19 +16,13 @@ script = ExtResource("1_cyndi")
 
 [node name="GameLogicSpawners" parent="." unique_id=615705820 instance=ExtResource("2_mty7g")]
 
-[node name="EndSpawn" parent="GameLogicSpawners" index="0" unique_id=1302923881]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.919897, -2.5045462, -4.491608)
-
-[node name="BallPedestal" parent="GameLogicSpawners" index="1" unique_id=1401124955]
+[node name="BallPedestal" parent="GameLogicSpawners" index="0" unique_id=1401124955]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20100772, -2.4882784, 0.04535246)
-
-[node name="Ball" parent="GameLogicSpawners/BallPedestal" index="0" unique_id=820267226]
-color = Color(0.6636676, 0.8818707, 0.17586923, 1)
 
 [node name="ColorDisplay" parent="GameLogicSpawners/BallPedestal" index="2" unique_id=1771863900]
 material = SubResource("StandardMaterial3D_xliyx")
 
-[node name="BallSpawn" parent="GameLogicSpawners" index="2" unique_id=1969051974]
+[node name="BallSpawn" parent="GameLogicSpawners" index="1" unique_id=1969051974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69224113, -2.4063764, 3.317379)
 
 [node name="room" type="CSGBox3D" parent="." unique_id=1848186869]

@@ -1,9 +1,7 @@
 class_name GameLogicSpawners
 extends Node3D
 
-func set_elements(end: bool, ball: Color, ped: Color):
-	if not end:
-		remove_child($EndSpawn)
+func set_elements(ball: Color, ped: Color):
 	if ball == Color.BLACK:
 		remove_child($BallSpawn)
 	else:
