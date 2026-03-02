@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwhu0fs3abwu6"
-path="res://.godot/imported/mazegame.icon.png-8fb77a00b77d1bb96025eb83d7af38e3.ctex"
+uid="uid://b0l2lbcc1ecvu"
+path="res://.godot/imported/mazegame.apple-touch-icon.png-123987f58734dc2a82dd7f144485ba09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://exports/web/mazegame.icon.png"
-dest_files=["res://.godot/imported/mazegame.icon.png-8fb77a00b77d1bb96025eb83d7af38e3.ctex"]
+source_file="res://web/mazegame.apple-touch-icon.png"
+dest_files=["res://.godot/imported/mazegame.apple-touch-icon.png-123987f58734dc2a82dd7f144485ba09.ctex"]
 
 [params]
 
