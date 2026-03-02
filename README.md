@@ -2,7 +2,7 @@
 
 ## setup
 
-Godot 4.6 - Mono
+Godot 4.6
 
 ### Addons:
 https://github.com/ramokz/phantom-camera
