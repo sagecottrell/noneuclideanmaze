@@ -29,10 +29,10 @@ func _on_hitbox_body_exited(body: Node3D) -> void:
 	if body is Player:
 		hitbox_player_exit.emit(self, body)
 
-func spawn_player(player: Node3D):
+func spawn_player(player: Player):
 	var spawn = find_child("spawn", false)
 	if spawn is Node3D:
-		player.global_transform = spawn.global_transform
+		player.teleport(spawn.global_transform)
 
 func set_active_door_count(count: int):
 	doors.shuffle()

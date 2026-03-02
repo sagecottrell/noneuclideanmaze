@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dhtarwcxy0ai"]
+
+[ext_resource type="Script" uid="uid://p8fvhobym4w6" path="res://rooms/BaseRoom.gd" id="1_2hnfl"]
+[ext_resource type="PackedScene" uid="uid://dnf47p3rpc0br" path="res://winscreen.tscn" id="1_nyvf7"]
+
+[node name="WinRoom" type="Node3D" unique_id=675605456]
+script = ExtResource("1_2hnfl")
+
+[node name="Winscreen" parent="." unique_id=561698197 instance=ExtResource("1_nyvf7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7557054)
+
+[node name="room" type="CSGBox3D" parent="." unique_id=1144071800]
+use_collision = true
+flip_faces = true
+size = Vector3(10, 5, 10)
+metadata/_edit_lock_ = true
+
+[node name="interior" type="CSGBox3D" parent="room" unique_id=867943278]
+operation = 2
+size = Vector3(9.9, 4.9, 9.9)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=178441162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.037908, 0)
+light_energy = 3.535
+light_indirect_energy = 2.743
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.54
+shadow_blur = 0.351
+omni_range = 11.0
+
+[node name="spawn" type="Node3D" parent="." unique_id=2053801331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9431193, 0)

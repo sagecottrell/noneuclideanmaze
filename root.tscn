@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ipjnps6q1pf" path="res://rooms/2-start1.tscn" id="4_huihk"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_vyht1"]
 [ext_resource type="PackedScene" uid="uid://d1yfdskpev3n6" path="res://player.tscn" id="5_l8v81"]
+[ext_resource type="PackedScene" uid="uid://dhtarwcxy0ai" path="res://rooms/win-room.tscn" id="6_bf3um"]
 [ext_resource type="PackedScene" uid="uid://cdharu8riru28" path="res://rooms/2-straight1.tscn" id="6_tw3kd"]
 [ext_resource type="PackedScene" uid="uid://24dkb8xqb7ro" path="res://rooms/3-t1.tscn" id="7_bf3um"]
 
@@ -12,6 +13,7 @@
 script = ExtResource("1_l8v81")
 starting_room_scenes = Array[PackedScene]([ExtResource("4_huihk")])
 all_room_scenes = Array[PackedScene]([ExtResource("7_bf3um"), ExtResource("4_bf3um"), ExtResource("6_tw3kd")])
+win_room_scenes = Array[PackedScene]([ExtResource("6_bf3um")])
 player_scene = ExtResource("5_l8v81")
 colors = Array[Color]([Color(0, 1, 0.8352941, 1), Color(1, 0.68235296, 0, 1), Color(1, 0, 1, 1)])
 

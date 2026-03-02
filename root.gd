@@ -2,6 +2,7 @@ extends Node3D
 
 @export var starting_room_scenes: Array[PackedScene] = []
 @export var all_room_scenes: Array[PackedScene] = []
+@export var win_room_scenes: Array[PackedScene] = []
 @export var player_scene: PackedScene
 
 var current_rooms: Array[BaseRoom] = []
@@ -16,8 +17,12 @@ var looking_at_ped: BallPedestal
 @export var colors: Array[Color] = []
 
 func player_exit(player: Player):
-	player.position.y += 1000
-	player.show_win()
+	var room: BaseRoom = win_room_scenes.pick_random().instantiate()
+	add_child(room)
+	print(room)
+	room.position.y = player.position.y + 1000
+	await get_tree().create_timer(.5).timeout
+	room.spawn_player(player)
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

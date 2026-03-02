@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ce0a8n1phecqe" path="res://rooms/character_body_3d.gd" id="1_i3pqv"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_hqtel"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_sweqy"]
-[ext_resource type="PackedScene" uid="uid://dnf47p3rpc0br" path="res://winscreen.tscn" id="4_hqtel"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_huihk"]
 height = 1.9
@@ -42,7 +41,3 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head/PlayerInteraction" unique_id=1934726342]
 shape = SubResource("CapsuleShape3D_i3pqv")
-
-[node name="Winscreen" parent="." unique_id=561698197 instance=ExtResource("4_hqtel")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-visible = false

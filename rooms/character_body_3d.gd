@@ -15,8 +15,6 @@ var mouse_sensitivity = 0.002
 var last_good_position: Vector3
 
 func _process(delta: float) -> void:
-	if $Winscreen.visible:
-		return
 	velocity += get_gravity() * delta
 	
 	if get_viewport().gui_get_focus_owner() != null:
@@ -37,9 +35,9 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	
 	if is_on_floor():
-		last_good_position = position
-	elif position.distance_to(last_good_position) > 100:
-		position = last_good_position
+		last_good_position = global_position
+	elif global_position.distance_to(last_good_position) > 100:
+		global_position = last_good_position
 		
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,6 +45,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Rotate body horizontally (yaw)
 		head.rotate_y(-event.relative.x * mouse_sensitivity)
 
-func show_win():
-	$Winscreen.visible = true
-	head.rotation.y = 0
+func teleport(transform: Transform3D):
+	global_transform = transform
+	last_good_position = transform.origin

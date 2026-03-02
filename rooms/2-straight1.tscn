@@ -95,6 +95,8 @@ material = SubResource("StandardMaterial3D_foswi")
 [node name="BallSpawn" parent="GameLogicSpawners" index="1" unique_id=1969051974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.741857, -0.6273041, 3.4528573)
 
+[node name="spawn" type="Node3D" parent="." unique_id=1605633645]
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
 
